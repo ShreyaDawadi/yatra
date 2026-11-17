@@ -1,0 +1,76 @@
+                                          Table "public.users"
+    Column     |            Type             | Collation | Nullable |              Default              
+---------------+-----------------------------+-----------+----------+-----------------------------------
+ id            | integer                     |           | not null | nextval('users_id_seq'::regclass)
+ name          | character varying(255)      |           | not null | 
+ email         | character varying(255)      |           | not null | 
+ password_hash | character varying(255)      |           | not null | 
+ created_at    | timestamp without time zone |           |          | now()
+Indexes:
+    "users_pkey" PRIMARY KEY, btree (id)
+    "users_email_key" UNIQUE CONSTRAINT, btree (email)
+Referenced by:
+    TABLE "bookings" CONSTRAINT "bookings_user_id_fkey" FOREIGN KEY (user_id) REFERENCES users(id)
+    TABLE "reviews" CONSTRAINT "reviews_user_id_fkey" FOREIGN KEY (user_id) REFERENCES users(id)
+
+                                           Table "public.listings"
+     Column      |            Type             | Collation | Nullable |               Default                
+-----------------+-----------------------------+-----------+----------+--------------------------------------
+ id              | integer                     |           | not null | nextval('listings_id_seq'::regclass)
+ type            | character varying(20)       |           | not null | 
+ name            | character varying(255)      |           | not null | 
+ name_np         | character varying(255)      |           |          | 
+ description     | text                        |           |          | 
+ description_np  | text                        |           |          | 
+ city            | character varying(100)      |           | not null | 
+ location_detail | character varying(255)      |           |          | 
+ latitude        | numeric(10,7)               |           |          | 
+ longitude       | numeric(10,7)               |           |          | 
+ price           | numeric(10,2)               |           | not null | 
+ duration_days   | integer                     |           |          | 
+ max_group_size  | integer                     |           |          | 
+ image_url       | character varying(500)      |           |          | 
+ created_at      | timestamp without time zone |           |          | now()
+Indexes:
+    "listings_pkey" PRIMARY KEY, btree (id)
+Referenced by:
+    TABLE "bookings" CONSTRAINT "bookings_listing_id_fkey" FOREIGN KEY (listing_id) REFERENCES listings(id)
+    TABLE "reviews" CONSTRAINT "reviews_listing_id_fkey" FOREIGN KEY (listing_id) REFERENCES listings(id)
+
+                                           Table "public.bookings"
+      Column      |            Type             | Collation | Nullable |               Default                
+------------------+-----------------------------+-----------+----------+--------------------------------------
+ id               | integer                     |           | not null | nextval('bookings_id_seq'::regclass)
+ user_id          | integer                     |           | not null | 
+ listing_id       | integer                     |           | not null | 
+ booking_date     | date                        |           | not null | 
+ number_of_people | integer                     |           | not null | 1
+ total_price      | numeric(10,2)               |           | not null | 
+ status           | character varying(20)       |           | not null | 'pending'::character varying
+ created_at       | timestamp without time zone |           |          | now()
+ nights           | integer                     |           |          | 
+Indexes:
+    "bookings_pkey" PRIMARY KEY, btree (id)
+Check constraints:
+    "bookings_nights_check" CHECK (nights IS NULL OR nights >= 1 AND nights <= 30)
+Foreign-key constraints:
+    "bookings_listing_id_fkey" FOREIGN KEY (listing_id) REFERENCES listings(id)
+    "bookings_user_id_fkey" FOREIGN KEY (user_id) REFERENCES users(id)
+
+                                        Table "public.reviews"
+   Column   |            Type             | Collation | Nullable |               Default               
+------------+-----------------------------+-----------+----------+-------------------------------------
+ id         | integer                     |           | not null | nextval('reviews_id_seq'::regclass)
+ listing_id | integer                     |           | not null | 
+ user_id    | integer                     |           | not null | 
+ rating     | integer                     |           | not null | 
+ comment    | text                        |           |          | 
+ created_at | timestamp without time zone |           |          | now()
+Indexes:
+    "reviews_pkey" PRIMARY KEY, btree (id)
+Check constraints:
+    "reviews_rating_check" CHECK (rating >= 1 AND rating <= 5)
+Foreign-key constraints:
+    "reviews_listing_id_fkey" FOREIGN KEY (listing_id) REFERENCES listings(id)
+    "reviews_user_id_fkey" FOREIGN KEY (user_id) REFERENCES users(id)
+

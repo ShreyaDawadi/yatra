@@ -1,6 +1,7 @@
 const express = require('express');
 const pool = require('../db');
 const requireAuth = require('../middleware/requireAuth');
+const { parseId, isValidDateString } = require('../utils/validators');
 
 const router = express.Router();
 
@@ -13,14 +14,6 @@ const LISTING_SELECT = `
     GROUP BY listing_id
   ) r ON r.listing_id = l.id
 `;
-
-function parseId(value) {
-  const id = Number(value);
-  if (!Number.isInteger(id) || id < 1 || id > 2147483647) {
-    return null;
-  }
-  return id;
-}
 
 router.get('/', async (req, res) => {
   const { type, city, search } = req.query;
@@ -79,6 +72,60 @@ router.get('/:id', async (req, res) => {
     res.json(listing);
   } catch (err) {
     console.error('Get listing error:', err);
+    res.status(500).json({ error: 'Something went wrong. Please try again.' });
+  }
+});
+
+router.get('/:id/rooms', async (req, res) => {
+  const id = parseId(req.params.id);
+  if (id === null) {
+    return res.status(400).json({ error: 'Invalid listing id' });
+  }
+
+  const { check_in, nights } = req.query;
+  const hasDates = check_in !== undefined || nights !== undefined;
+  const nightsNumber = Number(nights);
+
+  if (hasDates) {
+    if (!isValidDateString(check_in)) {
+      return res.status(400).json({ error: 'check_in must be a real date in YYYY-MM-DD format' });
+    }
+    if (!Number.isInteger(nightsNumber) || nightsNumber < 1 || nightsNumber > 30) {
+      return res.status(400).json({ error: 'nights must be a whole number from 1 to 30' });
+    }
+  }
+
+  try {
+    const listingResult = await pool.query('SELECT type FROM listings WHERE id = $1', [id]);
+    const listing = listingResult.rows[0];
+
+    if (!listing) {
+      return res.status(404).json({ error: 'Listing not found' });
+    }
+    if (listing.type !== 'hotel') {
+      return res.status(400).json({ error: 'Only hotels have rooms' });
+    }
+
+    const result = await pool.query(
+      `SELECT rt.id, rt.name, rt.name_np, rt.price_per_night, rt.max_guests, rt.total_rooms,
+              CASE WHEN $2::date IS NULL THEN NULL
+                   ELSE (rt.total_rooms - COALESCE(SUM(b.rooms), 0))::int
+              END AS rooms_available
+       FROM room_types rt
+       LEFT JOIN bookings b
+         ON b.room_type_id = rt.id
+        AND b.status <> 'cancelled'
+        AND b.booking_date < $2::date + $3::int
+        AND b.booking_date + b.nights > $2::date
+       WHERE rt.listing_id = $1
+       GROUP BY rt.id
+       ORDER BY rt.price_per_night`,
+      [id, hasDates ? check_in : null, hasDates ? nightsNumber : null]
+    );
+
+    res.json(result.rows);
+  } catch (err) {
+    console.error('Get rooms error:', err);
     res.status(500).json({ error: 'Something went wrong. Please try again.' });
   }
 });
