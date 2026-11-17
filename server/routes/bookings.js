@@ -4,6 +4,9 @@ const requireAuth = require('../middleware/requireAuth');
 
 const router = express.Router();
 
+const BOOKING_COLUMNS = `id, listing_id, to_char(booking_date, 'YYYY-MM-DD') AS booking_date,
+  number_of_people, nights, total_price, status, created_at`;
+
 function todayInNepal() {
   return new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Kathmandu' });
 }
@@ -16,13 +19,21 @@ function isValidDateString(value) {
   return !Number.isNaN(date.getTime()) && date.toISOString().slice(0, 10) === value;
 }
 
-router.post('/', requireAuth, async (req, res) => {
-  const { listing_id, booking_date, number_of_people } = req.body || {};
+function parseId(value) {
+  const id = Number(value);
+  if (!Number.isInteger(id) || id < 1 || id > 2147483647) {
+    return null;
+  }
+  return id;
+}
 
-  const listingId = Number(listing_id);
+router.post('/', requireAuth, async (req, res) => {
+  const { listing_id, booking_date, number_of_people, nights } = req.body || {};
+
+  const listingId = parseId(listing_id);
   const people = Number(number_of_people);
 
-  if (!Number.isInteger(listingId) || listingId < 1 || listingId > 2147483647) {
+  if (listingId === null) {
     return res.status(400).json({ error: 'A valid listing_id is required' });
   }
 
@@ -37,9 +48,10 @@ router.post('/', requireAuth, async (req, res) => {
   if (booking_date < todayInNepal()) {
     return res.status(400).json({ error: 'booking_date cannot be in the past' });
   }
+
   try {
     const listingResult = await pool.query(
-      'SELECT id, max_group_size FROM listings WHERE id = $1',
+      'SELECT id, type, max_group_size FROM listings WHERE id = $1',
       [listingId]
     );
     const listing = listingResult.rows[0];
@@ -52,12 +64,22 @@ router.post('/', requireAuth, async (req, res) => {
       return res.status(400).json({ error: `This listing allows at most ${listing.max_group_size} people per booking` });
     }
 
+    let nightsValue = null;
+    let multiplier = people;
+
+    if (listing.type === 'hotel') {
+      nightsValue = Number(nights);
+      if (!Number.isInteger(nightsValue) || nightsValue < 1 || nightsValue > 30) {
+        return res.status(400).json({ error: 'Hotel bookings need nights: a whole number from 1 to 30' });
+      }
+      multiplier = nightsValue;
+    }
+
     const result = await pool.query(
-      `INSERT INTO bookings (user_id, listing_id, booking_date, number_of_people, total_price)
-       VALUES ($1, $2, $3, $4, (SELECT price FROM listings WHERE id = $2) * $4::integer)
-       RETURNING id, user_id, listing_id, to_char(booking_date, 'YYYY-MM-DD') AS booking_date,
-                 number_of_people, total_price, status, created_at`,
-      [req.user.id, listingId, booking_date, people]
+      `INSERT INTO bookings (user_id, listing_id, booking_date, number_of_people, nights, total_price)
+       VALUES ($1, $2, $3, $4, $5, (SELECT price FROM listings WHERE id = $2) * $6::integer)
+       RETURNING ${BOOKING_COLUMNS}`,
+      [req.user.id, listingId, booking_date, people, nightsValue, multiplier]
     );
 
     res.status(201).json({ booking: result.rows[0] });
@@ -69,6 +91,7 @@ router.post('/', requireAuth, async (req, res) => {
     res.status(500).json({ error: 'Something went wrong. Please try again.' });
   }
 });
+
 router.get('/me', requireAuth, async (req, res) => {
   try {
     const result = await pool.query(
@@ -80,6 +103,7 @@ router.get('/me', requireAuth, async (req, res) => {
               l.city AS listing_city,
               to_char(b.booking_date, 'YYYY-MM-DD') AS booking_date,
               b.number_of_people,
+              b.nights,
               b.total_price,
               b.status,
               b.created_at
@@ -96,10 +120,11 @@ router.get('/me', requireAuth, async (req, res) => {
     res.status(500).json({ error: 'Something went wrong. Please try again.' });
   }
 });
-router.patch('/:id/cancel', requireAuth, async (req, res) => {
-  const bookingId = Number(req.params.id);
 
-  if (!Number.isInteger(bookingId) || bookingId < 1 || bookingId > 2147483647) {
+router.patch('/:id/cancel', requireAuth, async (req, res) => {
+  const bookingId = parseId(req.params.id);
+
+  if (bookingId === null) {
     return res.status(400).json({ error: 'Invalid booking id' });
   }
 
@@ -111,8 +136,7 @@ router.patch('/:id/cancel', requireAuth, async (req, res) => {
          AND user_id = $2
          AND status <> 'cancelled'
          AND booking_date >= $3
-       RETURNING id, listing_id, to_char(booking_date, 'YYYY-MM-DD') AS booking_date,
-                 number_of_people, total_price, status, created_at`,
+       RETURNING ${BOOKING_COLUMNS}`,
       [bookingId, req.user.id, todayInNepal()]
     );
 
@@ -121,9 +145,7 @@ router.patch('/:id/cancel', requireAuth, async (req, res) => {
     }
 
     const check = await pool.query(
-      `SELECT status
-       FROM bookings
-       WHERE id = $1 AND user_id = $2`,
+      'SELECT status FROM bookings WHERE id = $1 AND user_id = $2',
       [bookingId, req.user.id]
     );
     const existing = check.rows[0];
@@ -142,4 +164,5 @@ router.patch('/:id/cancel', requireAuth, async (req, res) => {
     res.status(500).json({ error: 'Something went wrong. Please try again.' });
   }
 });
+
 module.exports = router;
