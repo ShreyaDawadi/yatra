@@ -69,4 +69,77 @@ router.post('/', requireAuth, async (req, res) => {
     res.status(500).json({ error: 'Something went wrong. Please try again.' });
   }
 });
+router.get('/me', requireAuth, async (req, res) => {
+  try {
+    const result = await pool.query(
+      `SELECT b.id,
+              b.listing_id,
+              l.name AS listing_name,
+              l.name_np AS listing_name_np,
+              l.type AS listing_type,
+              l.city AS listing_city,
+              to_char(b.booking_date, 'YYYY-MM-DD') AS booking_date,
+              b.number_of_people,
+              b.total_price,
+              b.status,
+              b.created_at
+       FROM bookings b
+       JOIN listings l ON l.id = b.listing_id
+       WHERE b.user_id = $1
+       ORDER BY b.booking_date, b.id`,
+      [req.user.id]
+    );
+
+    res.json(result.rows);
+  } catch (err) {
+    console.error('Get my bookings error:', err);
+    res.status(500).json({ error: 'Something went wrong. Please try again.' });
+  }
+});
+router.patch('/:id/cancel', requireAuth, async (req, res) => {
+  const bookingId = Number(req.params.id);
+
+  if (!Number.isInteger(bookingId) || bookingId < 1 || bookingId > 2147483647) {
+    return res.status(400).json({ error: 'Invalid booking id' });
+  }
+
+  try {
+    const result = await pool.query(
+      `UPDATE bookings
+       SET status = 'cancelled'
+       WHERE id = $1
+         AND user_id = $2
+         AND status <> 'cancelled'
+         AND booking_date >= $3
+       RETURNING id, listing_id, to_char(booking_date, 'YYYY-MM-DD') AS booking_date,
+                 number_of_people, total_price, status, created_at`,
+      [bookingId, req.user.id, todayInNepal()]
+    );
+
+    if (result.rows.length > 0) {
+      return res.json({ booking: result.rows[0] });
+    }
+
+    const check = await pool.query(
+      `SELECT status
+       FROM bookings
+       WHERE id = $1 AND user_id = $2`,
+      [bookingId, req.user.id]
+    );
+    const existing = check.rows[0];
+
+    if (!existing) {
+      return res.status(404).json({ error: 'Booking not found' });
+    }
+
+    if (existing.status === 'cancelled') {
+      return res.status(400).json({ error: 'This booking is already cancelled' });
+    }
+
+    return res.status(400).json({ error: 'Past bookings cannot be cancelled' });
+  } catch (err) {
+    console.error('Cancel booking error:', err);
+    res.status(500).json({ error: 'Something went wrong. Please try again.' });
+  }
+});
 module.exports = router;
