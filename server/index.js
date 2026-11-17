@@ -4,12 +4,14 @@ const cors = require('cors');
 const pool = require('./db');
 const authRoutes = require('./routes/auth');
 const listingRoutes = require('./routes/listings');
+const bookingRoutes = require('./routes/bookings');
 
 const app = express();
 const PORT = process.env.PORT || 5001;
 
 app.use(cors());
 app.use(express.json());
+app.use('/api/bookings', bookingRoutes);
 
 app.get('/', (req, res) => {
   res.json({ message: 'Yatra API is running' });
