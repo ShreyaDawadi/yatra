@@ -16,6 +16,7 @@ function Footer() {
     { to: '/about', label: t('nav.about') },
     { to: '/contact', label: t('nav.contact') },
     { to: '/dashboard', label: t('nav.dashboard') },
+    { to: '/credits', label: t('nav.credits') },
   ]
 
   return (

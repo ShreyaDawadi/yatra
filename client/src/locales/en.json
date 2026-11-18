@@ -14,7 +14,8 @@
     "signup": "Sign up",
     "dashboard": "My dashboard",
     "logout": "Log out",
-    "menu": "Open menu"
+    "menu": "Open menu",
+    "credits": "Photo credits"
   },
   "common": {
     "loading": "Loading…",
@@ -92,27 +93,69 @@
     "testimonialsSubtitle": "Recent reviews from people who booked with Yatra."
   },
   "destinations": {
-    "kathmandu": { "name": "Kathmandu", "text": "Temples, stupas and old royal squares" },
-    "pokhara": { "name": "Pokhara", "text": "Lakeside town at the foot of the Annapurnas" },
-    "everest": { "name": "Everest region", "text": "Sherpa villages on the way to base camp" },
-    "chitwan": { "name": "Chitwan", "text": "Jungle safaris and Tharu villages" },
-    "mustang": { "name": "Mustang", "text": "The former Kingdom of Lo" },
-    "nagarkot": { "name": "Nagarkot", "text": "Himalayan sunrise above the valley" }
+    "kathmandu": {
+      "name": "Kathmandu",
+      "text": "Temples, stupas and old royal squares"
+    },
+    "pokhara": {
+      "name": "Pokhara",
+      "text": "Lakeside town at the foot of the Annapurnas"
+    },
+    "everest": {
+      "name": "Everest region",
+      "text": "Sherpa villages on the way to base camp"
+    },
+    "chitwan": {
+      "name": "Chitwan",
+      "text": "Jungle safaris and Tharu villages"
+    },
+    "mustang": {
+      "name": "Mustang",
+      "text": "The former Kingdom of Lo"
+    },
+    "nagarkot": {
+      "name": "Nagarkot",
+      "text": "Himalayan sunrise above the valley"
+    }
   },
   "why": {
     "eyebrow": "Why Yatra",
     "title": "Travel planning that respects your time",
-    "local": { "title": "Local focus", "text": "Every trek, stay and tour is in Nepal, described with the details that matter on the ground." },
-    "pricing": { "title": "Clear pricing", "text": "The total is calculated by our server from the listed price, so what you see is what you book." },
-    "flexible": { "title": "Flexible plans", "text": "Cancel any upcoming booking from your dashboard before the travel date." },
-    "bilingual": { "title": "Nepali and English", "text": "Switch languages at any time. Your choice is remembered on this device." }
+    "local": {
+      "title": "Local focus",
+      "text": "Every trek, stay and tour is in Nepal, described with the details that matter on the ground."
+    },
+    "pricing": {
+      "title": "Clear pricing",
+      "text": "The total is calculated by our server from the listed price, so what you see is what you book."
+    },
+    "flexible": {
+      "title": "Flexible plans",
+      "text": "Cancel any upcoming booking from your dashboard before the travel date."
+    },
+    "bilingual": {
+      "title": "Nepali and English",
+      "text": "Switch languages at any time. Your choice is remembered on this device."
+    }
   },
   "inspiration": {
     "eyebrow": "Travel inspiration",
     "title": "Before you go",
-    "seasons": { "title": "Pick your season", "text": "Spring and autumn usually bring the clearest mountain views. The monsoon brings green valleys and cloudier peaks.", "link": "Browse treks" },
-    "altitude": { "title": "Go slowly at altitude", "text": "Above about 3,000 m, rest days help your body adjust. Shorter routes are a good start if you are new to trekking.", "link": "See shorter treks" },
-    "culture": { "title": "Travel with respect", "text": "Walk clockwise around stupas, ask before photographing people and dress modestly at temples.", "link": "Explore cultural tours" }
+    "seasons": {
+      "title": "Pick your season",
+      "text": "Spring and autumn usually bring the clearest mountain views. The monsoon brings green valleys and cloudier peaks.",
+      "link": "Browse treks"
+    },
+    "altitude": {
+      "title": "Go slowly at altitude",
+      "text": "Above about 3,000 m, rest days help your body adjust. Shorter routes are a good start if you are new to trekking.",
+      "link": "See shorter treks"
+    },
+    "culture": {
+      "title": "Travel with respect",
+      "text": "Walk clockwise around stupas, ask before photographing people and dress modestly at temples.",
+      "link": "Explore cultural tours"
+    }
   },
   "newsletter": {
     "title": "Trail notes in your inbox",
@@ -121,13 +164,36 @@
     "subscribe": "Subscribe"
   },
   "validation": {
-    "email": "Please enter a valid email address"
+    "email": "Please enter a valid email address",
+    "required": "This field is required",
+    "nameRequired": "Please enter a name",
+    "passwordLength": "At least 8 characters",
+    "passwordsMatch": "Passwords do not match",
+    "rating": "Choose a rating from 1 to 5 stars",
+    "tooLong": "{{max}} characters at most",
+    "phone": "Use digits, spaces, +, - and brackets only"
   },
   "discovery": {
-    "treks": { "eyebrow": "Treks", "title": "Trekking in Nepal", "subtitle": "From four-day ridge walks to two-week high passes." },
-    "hotels": { "eyebrow": "Hotels", "title": "Places to stay", "subtitle": "Heritage hotels, lakeside retreats, jungle lodges and mountain lodges." },
-    "tours": { "eyebrow": "Tours", "title": "Sightseeing and culture", "subtitle": "Temples, lakes, caves and safaris across Kathmandu, Pokhara and Chitwan." },
-    "explore": { "eyebrow": "Explore", "title": "All experiences", "subtitle": "Treks, hotels and tours together. Narrow it down with the filters." },
+    "treks": {
+      "eyebrow": "Treks",
+      "title": "Trekking in Nepal",
+      "subtitle": "From four-day ridge walks to two-week high passes."
+    },
+    "hotels": {
+      "eyebrow": "Hotels",
+      "title": "Places to stay",
+      "subtitle": "Heritage hotels, lakeside retreats, jungle lodges and mountain lodges."
+    },
+    "tours": {
+      "eyebrow": "Tours",
+      "title": "Sightseeing and culture",
+      "subtitle": "Temples, lakes, caves and safaris across Kathmandu, Pokhara and Chitwan."
+    },
+    "explore": {
+      "eyebrow": "Explore",
+      "title": "All experiences",
+      "subtitle": "Treks, hotels and tours together. Narrow it down with the filters."
+    },
     "results_one": "{{count}} result",
     "results_other": "{{count}} results",
     "emptyTitle": "Nothing matches those filters",
@@ -189,5 +255,169 @@
     "company": "Yatra",
     "rights": "All rights reserved.",
     "demoNote": "Portfolio project: listings and prices are sample data."
+  },
+  "auth": {
+    "sideTitle": "Your next journey starts here",
+    "sideText": "Save favourite treks, book stays and keep every trip in one dashboard.",
+    "loginTitle": "Welcome back",
+    "loginSubtitle": "Log in to manage your bookings and reviews.",
+    "email": "Email",
+    "password": "Password",
+    "forgotLink": "Forgot password?",
+    "loginButton": "Log in",
+    "noAccount": "New to Yatra?",
+    "createAccount": "Create an account",
+    "signupTitle": "Create your account",
+    "signupSubtitle": "It takes less than a minute.",
+    "name": "Full name",
+    "confirmPassword": "Confirm password",
+    "signupButton": "Create account",
+    "haveAccount": "Already have an account?",
+    "forgotTitle": "Forgot your password?",
+    "forgotSubtitle": "Enter your email and we will send you a reset link.",
+    "sendLink": "Send reset link",
+    "devResetNote": "Demo note: no email service is connected yet, so the reset link is printed in the backend terminal.",
+    "backToLogin": "Back to log in",
+    "resetTitle": "Choose a new password",
+    "resetSubtitle": "Reset links work once and expire after 30 minutes.",
+    "newPassword": "New password",
+    "resetButton": "Save new password",
+    "resetSuccess": "Your password has been reset. You can now log in.",
+    "invalidLink": "This reset link is missing or invalid.",
+    "requestNewLink": "Request a new link"
+  },
+  "map": {
+    "openInGoogle": "Open in Google Maps",
+    "noKey": "Interactive map unavailable: add a Google Maps API key to enable it.",
+    "start": "Start",
+    "end": "End",
+    "routeNote": "Route shown is approximate."
+  },
+  "detail": {
+    "notFound": "We couldn't find that listing",
+    "overview": "Overview",
+    "duration": "Duration",
+    "difficulty": "Difficulty",
+    "maxAltitude": "Highest point",
+    "bestSeason": "Best season",
+    "starRating": "Hotel class",
+    "groupSize": "Group size",
+    "upToPeople_one": "Up to {{count}} person",
+    "upToPeople_other": "Up to {{count}} people",
+    "location": "Location",
+    "amenities": "Amenities",
+    "rooms": "Rooms and availability",
+    "itinerary": "Day-by-day itinerary",
+    "day": "Day {{day}}",
+    "whatsIncluded": "What's included",
+    "included": "Included",
+    "excluded": "Not included",
+    "routeMap": "Route map",
+    "previousPhoto": "Previous photo",
+    "nextPhoto": "Next photo",
+    "photoNumber": "Photo {{index}}",
+    "maxGuests_one": "Up to {{count}} guest",
+    "maxGuests_other": "Up to {{count}} guests",
+    "roomsLeft_one": "{{count}} room left",
+    "roomsLeft_other": "{{count}} rooms left",
+    "soldOut": "Not available for these dates",
+    "pickDates": "Choose check-in and check-out dates to see availability.",
+    "reserve": "Reserve",
+    "continueToBooking": "Continue to booking",
+    "seeRooms": "See available rooms",
+    "invalidDates": "Check-out must be 1 to 30 nights after check-in."
+  },
+  "reviews": {
+    "title": "Reviews",
+    "basedOn_one": "Based on {{count}} review",
+    "basedOn_other": "Based on {{count}} reviews",
+    "noReviews": "No reviews yet. Travellers who book can share their experience.",
+    "loginToReview": "Log in to write a review",
+    "needBooking": "Only travellers who have booked this can review it.",
+    "alreadyReviewed": "You have already reviewed this. You can edit your review below.",
+    "writeTitle": "Write a review",
+    "yourRating": "Your rating",
+    "starLabel_one": "{{count}} star",
+    "starLabel_other": "{{count}} stars",
+    "comment": "Your review",
+    "commentPlaceholder": "What stood out? What should other travellers know?",
+    "submit": "Post review",
+    "update": "Save changes",
+    "edit": "Edit",
+    "delete": "Delete",
+    "confirmDelete": "Delete this review?",
+    "yesDelete": "Yes, delete",
+    "cancel": "Cancel",
+    "edited": "edited"
+  },
+  "booking": {
+    "title": "Complete your booking",
+    "steps": {
+      "trip": "Trip details",
+      "guest": "Your details",
+      "review": "Review"
+    },
+    "tripTitle": "When are you going?",
+    "guestTitle": "Who is travelling?",
+    "guestIntro": "We use these details for this booking only. They are filled in from your profile.",
+    "reviewTitle": "Check and confirm",
+    "date": "Travel date",
+    "travelers": "Travellers",
+    "checkIn": "Check-in",
+    "checkOut": "Check-out",
+    "nights": "Nights",
+    "nightsCount_one": "{{count}} night",
+    "nightsCount_other": "{{count}} nights",
+    "guests": "Guests",
+    "rooms": "Rooms",
+    "room": "Room",
+    "chooseRoom": "Choose a room type",
+    "guestName": "Full name",
+    "guestEmail": "Email",
+    "guestPhone": "Phone",
+    "optional": "Optional",
+    "specialRequests": "Special requests",
+    "requestsPlaceholder": "Dietary needs, arrival time, pickup location…",
+    "summary": "Booking summary",
+    "priceBreakdown": "Price breakdown",
+    "pricePerPerson": "Price per person",
+    "pricePerNight": "Price per room per night",
+    "estimatedTotal": "Estimated total",
+    "serverNote": "The final total is calculated by our server when you confirm.",
+    "noPayment": "No payment is taken online. This sends a booking request, which starts as pending.",
+    "back": "Back",
+    "next": "Continue",
+    "confirm": "Confirm booking",
+    "confirming": "Confirming…",
+    "successTitle": "Booking received",
+    "successText": "Your booking is saved with the status “{{status}}”. You can view or cancel it from your dashboard.",
+    "reference": "Booking reference",
+    "status": "Status",
+    "total": "Total",
+    "viewBookings": "View my bookings",
+    "backToListing": "Back to listing",
+    "errors": {
+      "dateRequired": "Choose a date",
+      "datePast": "The date cannot be in the past",
+      "travelersRange": "Choose between 1 and {{max}} people",
+      "roomRequired": "Choose a room type",
+      "nightsRange": "Choose 1 to 30 nights",
+      "roomsRange": "Choose 1 to 10 rooms",
+      "capacity": "These rooms fit at most {{count}} guests",
+      "notEnoughRooms": "Only {{count}} room(s) of this type are left for these dates"
+    }
+  },
+  "status": {
+    "pending": "Pending",
+    "confirmed": "Confirmed",
+    "cancelled": "Cancelled"
+  },
+  "credits": {
+    "title": "Photo credits",
+    "intro": "Listing photos come from Wikimedia Commons under free Creative Commons licences. Thank you to every photographer. Hotel listings show photos of their area, not of the hotels themselves.",
+    "photoBy": "Photo:",
+    "via": "via Wikimedia Commons",
+    "areaPhoto": "Photo of the area: {{place}}",
+    "homepage": "Homepage"
   }
 }

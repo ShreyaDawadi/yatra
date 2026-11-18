@@ -8,8 +8,10 @@ import { reviewService } from '../services/reviewService'
 import { useAsync } from '../hooks/useAsync'
 import { useSavedListings } from '../hooks/useSavedListings'
 import { DESTINATIONS } from '../utils/destinations'
+import { DESTINATION_PHOTOS, HERO_PHOTO } from '../utils/sitePhotos'
 import { firstName, localized, toNumber } from '../utils/format'
 import HeroSearch from '../components/home/HeroSearch'
+import PhotoCredit from '../components/detail/PhotoCredit'
 import NewsletterSection from '../components/home/NewsletterSection'
 import MountainArt from '../components/common/MountainArt'
 import SectionHeading from '../components/common/SectionHeading'
@@ -34,18 +36,26 @@ function Hero() {
 
   return (
     <section className="relative isolate overflow-hidden bg-forest">
-      {!photoFailed && (
-        <img
-          src="/images/hero.jpg"
+      {photoFailed ? (
+        <MountainArt withSun className="absolute inset-x-0 bottom-0 -z-20 h-full w-full" />
+      ) : (
+        <motion.img
+          src={HERO_PHOTO.url}
+          srcSet={HERO_PHOTO.srcSet}
+          sizes="100vw"
           alt=""
+          fetchPriority="high"
           onError={() => setPhotoFailed(true)}
-          className="absolute inset-0 -z-10 h-full w-full object-cover opacity-60"
+          initial={{ scale: 1.08 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 1.6, ease: 'easeOut' }}
+          className="absolute inset-0 -z-20 h-full w-full object-cover object-[center_40%]"
         />
       )}
-      <MountainArt withSun={photoFailed} className="absolute inset-x-0 bottom-0 -z-10 h-full w-full" />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-forest/40 via-transparent to-forest/60" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-forest/90 via-forest/55 to-forest/5" />
+      <div className="absolute inset-x-0 bottom-0 -z-10 h-48 bg-gradient-to-t from-forest/80 to-transparent" />
 
-      <div className="container-page pb-20 pt-20 sm:pt-28 lg:pb-28">
+      <div className="container-page pb-24 pt-20 sm:pt-28 lg:pb-32">
         <motion.p
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
@@ -58,7 +68,7 @@ function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="mt-4 max-w-3xl font-display text-4xl leading-tight text-cream sm:text-5xl lg:text-6xl"
+          className="mt-4 max-w-3xl font-display text-4xl leading-tight text-cream drop-shadow-sm sm:text-5xl lg:text-6xl"
         >
           {t('home.heroTitle')}
         </motion.h1>
@@ -66,7 +76,7 @@ function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mt-5 max-w-xl text-lg text-cream/80"
+          className="mt-5 max-w-xl text-lg text-cream/85"
         >
           {t('home.heroSubtitle')}
         </motion.p>
@@ -79,6 +89,8 @@ function Hero() {
           <HeroSearch />
         </motion.div>
       </div>
+
+      {!photoFailed && <PhotoCredit credit={HERO_PHOTO} light className="absolute bottom-3 right-4 left-4 text-right sm:left-auto" />}
     </section>
   )
 }
@@ -102,9 +114,19 @@ function Destinations({ listings }) {
           <Reveal key={destination.key} delay={index * 0.05}>
             <Link
               to={`/explore?city=${encodeURIComponent(destination.city)}`}
-              className="group relative flex h-44 flex-col justify-end overflow-hidden rounded-lg bg-forest p-5 text-cream"
+              className="group relative flex h-56 flex-col justify-end overflow-hidden rounded-lg bg-forest p-5 text-cream"
             >
-              <MountainArt className="absolute inset-0 h-full w-full opacity-80 transition-transform duration-500 group-hover:scale-105" />
+              {DESTINATION_PHOTOS[destination.key] ? (
+                <img
+                  src={DESTINATION_PHOTOS[destination.key].url}
+                  alt=""
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+              ) : (
+                <MountainArt className="absolute inset-0 h-full w-full opacity-80" />
+              )}
+              <div className="absolute inset-0 bg-gradient-to-t from-forest/90 via-forest/35 to-transparent" />
               <div className="relative">
                 <p className="font-display text-2xl">{t(`destinations.${destination.key}.name`)}</p>
                 <p className="mt-1 text-sm text-cream/80">{t(`destinations.${destination.key}.text`)}</p>
