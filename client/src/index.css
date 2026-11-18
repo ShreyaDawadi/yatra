@@ -1,1 +1,56 @@
 @import "tailwindcss";
+
+@theme {
+  --color-forest: #164B3B;
+  --color-mountain: #28745A;
+  --color-cream: #F8F6F0;
+  --color-charcoal: #252A27;
+  --color-gold: #D6AD60;
+
+  --font-sans: "Inter", "Noto Sans Devanagari", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fraunces", "Noto Sans Devanagari", Georgia, serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-cream font-sans text-charcoal antialiased;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-gold;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-md bg-forest px-5 py-2.5 text-sm font-semibold text-cream transition-colors hover:bg-mountain disabled:cursor-not-allowed disabled:opacity-60;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-md border border-forest/20 bg-white px-5 py-2.5 text-sm font-semibold text-forest transition-colors hover:border-forest hover:bg-forest/5 disabled:cursor-not-allowed disabled:opacity-60;
+  }
+
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2 rounded-md bg-gold px-5 py-2.5 text-sm font-semibold text-charcoal transition-colors hover:bg-gold/85 disabled:cursor-not-allowed disabled:opacity-60;
+  }
+
+  .field-label {
+    @apply mb-1.5 block text-sm font-medium text-charcoal/80;
+  }
+
+  .field-input {
+    @apply w-full rounded-md border border-charcoal/15 bg-white px-3 py-2.5 text-sm text-charcoal placeholder:text-charcoal/40 focus:border-mountain focus:outline-none focus:ring-2 focus:ring-mountain/20;
+  }
+
+  .field-error {
+    @apply mt-1 text-sm text-red-700;
+  }
+}

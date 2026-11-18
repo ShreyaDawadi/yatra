@@ -1,0 +1,193 @@
+{
+  "brand": {
+    "name": "Yatra"
+  },
+  "nav": {
+    "main": "Main navigation",
+    "treks": "Treks",
+    "hotels": "Hotels",
+    "tours": "Tours",
+    "explore": "Explore all",
+    "about": "About",
+    "contact": "Contact",
+    "login": "Log in",
+    "signup": "Sign up",
+    "dashboard": "My dashboard",
+    "logout": "Log out",
+    "menu": "Open menu"
+  },
+  "common": {
+    "loading": "Loading…",
+    "retry": "Try again",
+    "viewAll": "View all",
+    "errorTitle": "Something went wrong",
+    "close": "Close",
+    "changeLanguage": "Change language",
+    "otherLanguage": "नेपाली"
+  },
+  "types": {
+    "trek": "Trek",
+    "hotel": "Hotel",
+    "sightseeing": "Tour"
+  },
+  "typesPlural": {
+    "trek": "Treks",
+    "hotel": "Hotels",
+    "sightseeing": "Tours",
+    "all": "All experiences"
+  },
+  "difficulty": {
+    "easy": "Easy",
+    "moderate": "Moderate",
+    "challenging": "Challenging",
+    "strenuous": "Strenuous"
+  },
+  "card": {
+    "perPerson": "per person",
+    "perNight": "per night",
+    "from": "from",
+    "noReviews": "No reviews yet",
+    "reviewCount_one": "{{count}} review",
+    "reviewCount_other": "{{count}} reviews",
+    "starsOutOfFive_one": "{{count}} star out of 5",
+    "starsOutOfFive_other": "{{count}} stars out of 5",
+    "days_one": "{{count}} day",
+    "days_other": "{{count}} days",
+    "altitude": "{{value}} m",
+    "stars_one": "{{count}}-star",
+    "stars_other": "{{count}}-star",
+    "dayTour": "Day tour",
+    "save": "Save to wishlist",
+    "unsave": "Remove from wishlist"
+  },
+  "search": {
+    "label": "Search experiences",
+    "destination": "Destination",
+    "destinationPlaceholder": "Pokhara, Everest, Chitwan…",
+    "category": "Experience",
+    "date": "Travel date",
+    "travelers": "Travelers",
+    "submit": "Search"
+  },
+  "home": {
+    "eyebrow": "Treks · Stays · Tours",
+    "heroTitle": "Discover Nepal, One Journey at a Time.",
+    "heroSubtitle": "Plan Himalayan treks, lakeside stays and heritage tours in one place, with prices worked out before you book.",
+    "destinationsEyebrow": "Where to go",
+    "destinationsTitle": "Popular destinations",
+    "destinationsSubtitle": "From the temples of the Kathmandu Valley to the walled city of Lo Manthang.",
+    "experienceCount_one": "{{count}} experience",
+    "experienceCount_other": "{{count}} experiences",
+    "featuredTreks": "Featured trekking packages",
+    "featuredTreksSubtitle": "Guided routes with permits, teahouses and a day-by-day plan.",
+    "recommendedHotels": "Recommended hotels",
+    "recommendedHotelsSubtitle": "Places to rest before and after the trail.",
+    "popularTours": "Popular sightseeing tours",
+    "popularToursSubtitle": "Half-day and day trips to temples, lakes and national parks.",
+    "routesEyebrow": "On the trail",
+    "routesTitle": "Popular trekking routes",
+    "routesSubtitle": "Compare length, highest point and difficulty at a glance.",
+    "testimonialsEyebrow": "From travellers",
+    "testimonialsTitle": "What travellers say",
+    "testimonialsSubtitle": "Recent reviews from people who booked with Yatra."
+  },
+  "destinations": {
+    "kathmandu": { "name": "Kathmandu", "text": "Temples, stupas and old royal squares" },
+    "pokhara": { "name": "Pokhara", "text": "Lakeside town at the foot of the Annapurnas" },
+    "everest": { "name": "Everest region", "text": "Sherpa villages on the way to base camp" },
+    "chitwan": { "name": "Chitwan", "text": "Jungle safaris and Tharu villages" },
+    "mustang": { "name": "Mustang", "text": "The former Kingdom of Lo" },
+    "nagarkot": { "name": "Nagarkot", "text": "Himalayan sunrise above the valley" }
+  },
+  "why": {
+    "eyebrow": "Why Yatra",
+    "title": "Travel planning that respects your time",
+    "local": { "title": "Local focus", "text": "Every trek, stay and tour is in Nepal, described with the details that matter on the ground." },
+    "pricing": { "title": "Clear pricing", "text": "The total is calculated by our server from the listed price, so what you see is what you book." },
+    "flexible": { "title": "Flexible plans", "text": "Cancel any upcoming booking from your dashboard before the travel date." },
+    "bilingual": { "title": "Nepali and English", "text": "Switch languages at any time. Your choice is remembered on this device." }
+  },
+  "inspiration": {
+    "eyebrow": "Travel inspiration",
+    "title": "Before you go",
+    "seasons": { "title": "Pick your season", "text": "Spring and autumn usually bring the clearest mountain views. The monsoon brings green valleys and cloudier peaks.", "link": "Browse treks" },
+    "altitude": { "title": "Go slowly at altitude", "text": "Above about 3,000 m, rest days help your body adjust. Shorter routes are a good start if you are new to trekking.", "link": "See shorter treks" },
+    "culture": { "title": "Travel with respect", "text": "Walk clockwise around stupas, ask before photographing people and dress modestly at temples.", "link": "Explore cultural tours" }
+  },
+  "newsletter": {
+    "title": "Trail notes in your inbox",
+    "text": "Occasional updates on new routes, stays and seasonal tips. No spam.",
+    "placeholder": "Your email address",
+    "subscribe": "Subscribe"
+  },
+  "validation": {
+    "email": "Please enter a valid email address"
+  },
+  "discovery": {
+    "treks": { "eyebrow": "Treks", "title": "Trekking in Nepal", "subtitle": "From four-day ridge walks to two-week high passes." },
+    "hotels": { "eyebrow": "Hotels", "title": "Places to stay", "subtitle": "Heritage hotels, lakeside retreats, jungle lodges and mountain lodges." },
+    "tours": { "eyebrow": "Tours", "title": "Sightseeing and culture", "subtitle": "Temples, lakes, caves and safaris across Kathmandu, Pokhara and Chitwan." },
+    "explore": { "eyebrow": "Explore", "title": "All experiences", "subtitle": "Treks, hotels and tours together. Narrow it down with the filters." },
+    "results_one": "{{count}} result",
+    "results_other": "{{count}} results",
+    "emptyTitle": "Nothing matches those filters",
+    "emptyText": "Try removing a filter or searching for a different destination."
+  },
+  "filters": {
+    "title": "Filters",
+    "search": "Search",
+    "searchPlaceholder": "Name or place",
+    "destination": "Destination",
+    "allDestinations": "All destinations",
+    "price": "Price (USD)",
+    "min": "Min",
+    "max": "Max",
+    "minPrice": "Minimum price",
+    "maxPrice": "Maximum price",
+    "difficulty": "Difficulty",
+    "any": "Any",
+    "duration": "Duration",
+    "upToDays_one": "Up to {{count}} day",
+    "upToDays_other": "Up to {{count}} days",
+    "stars": "Star rating",
+    "starsAndUp_one": "{{count}} star and up",
+    "starsAndUp_other": "{{count}} stars and up",
+    "apply": "Apply filters",
+    "clear": "Clear",
+    "sort": "Sort by"
+  },
+  "sort": {
+    "recommended": "Recommended",
+    "price_asc": "Price: low to high",
+    "price_desc": "Price: high to low",
+    "rating": "Best rated",
+    "popular": "Most popular",
+    "duration": "Shortest first"
+  },
+  "placeholder": {
+    "text": "This page is part of the next build step.",
+    "pages": {
+      "detail": "Listing details",
+      "booking": "Booking",
+      "login": "Log in",
+      "signup": "Sign up",
+      "forgotPassword": "Forgot password",
+      "resetPassword": "Reset password",
+      "dashboard": "My dashboard",
+      "about": "About Yatra",
+      "contact": "Contact us"
+    }
+  },
+  "notFound": {
+    "title": "This trail doesn't exist",
+    "text": "The page you are looking for could not be found.",
+    "home": "Back to home"
+  },
+  "footer": {
+    "tagline": "Treks, stays and sightseeing across Nepal, planned in one place.",
+    "explore": "Explore",
+    "company": "Yatra",
+    "rights": "All rights reserved.",
+    "demoNote": "Portfolio project: listings and prices are sample data."
+  }
+}

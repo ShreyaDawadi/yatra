@@ -19,6 +19,26 @@ function readReviewInput(body) {
   return { rating, comment };
 }
 
+router.get('/recent', async (req, res) => {
+  try {
+    const result = await pool.query(
+      `SELECT r.id, r.rating, r.comment, r.created_at, u.name AS user_name,
+              l.id AS listing_id, l.name AS listing_name, l.name_np AS listing_name_np
+       FROM reviews r
+       JOIN users u ON u.id = r.user_id
+       JOIN listings l ON l.id = r.listing_id
+       WHERE r.comment IS NOT NULL AND r.rating >= 4
+       ORDER BY r.created_at DESC
+       LIMIT 6`
+    );
+
+    res.json(result.rows);
+  } catch (err) {
+    console.error('Get recent reviews error:', err);
+    res.status(500).json({ error: 'Something went wrong. Please try again.' });
+  }
+});
+
 router.get('/me', requireAuth, async (req, res) => {
   try {
     const result = await pool.query(
