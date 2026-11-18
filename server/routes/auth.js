@@ -225,7 +225,7 @@ router.post('/forgot-password', async (req, res) => {
         [user.id, hashToken(token)]
       );
 
-      const clientUrl = process.env.CLIENT_URL || 'http://localhost:5173';
+      const clientUrl = (process.env.CLIENT_URL || 'http://localhost:5173').split(',')[0].trim();
       console.log(`Password reset link for ${cleanEmail}: ${clientUrl}/reset-password?token=${token}`);
     }
 

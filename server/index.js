@@ -13,7 +13,13 @@ const contactRoutes = require('./routes/contact');
 const app = express();
 const PORT = process.env.PORT || 5001;
 
-app.use(cors());
+// In production, only the deployed frontend may call the API.
+// CLIENT_URL can hold several origins separated by commas.
+const allowedOrigins = process.env.CLIENT_URL
+  ? process.env.CLIENT_URL.split(',').map((origin) => origin.trim())
+  : null;
+
+app.use(cors(allowedOrigins ? { origin: allowedOrigins } : undefined));
 app.use(express.json());
 
 app.get('/', (req, res) => {
