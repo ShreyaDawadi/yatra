@@ -419,5 +419,125 @@
     "via": "via Wikimedia Commons",
     "areaPhoto": "Photo of the area: {{place}}",
     "homepage": "Homepage"
+  },
+  "dashboard": {
+    "eyebrow": "My dashboard",
+    "greeting": "Namaste, {{name}}",
+    "navLabel": "Dashboard sections",
+    "nav": {
+      "overview": "Overview",
+      "bookings": "My bookings",
+      "saved": "Saved",
+      "reviews": "My reviews",
+      "profile": "Profile and settings"
+    },
+    "overview": {
+      "upcoming": "Upcoming trips",
+      "saved": "Saved listings",
+      "reviews": "Reviews written",
+      "nextTrip": "Your next trip",
+      "noTrips": "No upcoming trips yet",
+      "noTripsText": "Find a trek, stay or tour and your next trip will show here."
+    },
+    "bookings": {
+      "tabs": {
+        "upcoming": "Upcoming",
+        "past": "Past",
+        "cancelled": "Cancelled"
+      },
+      "empty": {
+        "upcoming": "No upcoming bookings",
+        "past": "No past trips yet",
+        "cancelled": "No cancelled bookings"
+      },
+      "people_one": "{{count}} traveller",
+      "people_other": "{{count}} travellers",
+      "guestsRooms": "{{guests}} guest(s), {{rooms}} room(s)",
+      "cancel": "Cancel booking",
+      "confirmCancel": "Cancel this booking?",
+      "yesCancel": "Yes, cancel",
+      "keep": "Keep it"
+    },
+    "saved": {
+      "empty": "Nothing saved yet",
+      "emptyText": "Tap the heart on any trek, hotel or tour to keep it here."
+    },
+    "reviews": {
+      "empty": "You haven't written any reviews",
+      "emptyText": "After booking, you can review it from its page.",
+      "editOnListing": "Edit on the listing page"
+    },
+    "profile": {
+      "detailsTitle": "Your details",
+      "save": "Save changes",
+      "saved": "Your details have been updated.",
+      "emailFixed": "Email can't be changed here.",
+      "memberSince": "Member since",
+      "passwordTitle": "Change password",
+      "currentPassword": "Current password",
+      "changePassword": "Update password",
+      "passwordChanged": "Your password has been updated."
+    }
+  },
+  "about": {
+    "eyebrow": "About Yatra",
+    "title": "Made for journeys across Nepal",
+    "intro": "Yatra brings treks, places to stay and cultural tours into one simple, bilingual place to plan and book.",
+    "storyEyebrow": "Our story",
+    "storyTitle": "Why we built Yatra",
+    "story1": "Planning a trip in Nepal often means jumping between agency websites, social media pages and phone calls, each with its own prices and details. Yatra puts the essentials side by side: routes, altitudes, seasons, rooms and prices.",
+    "story2": "Yatra started in Pokhara as a portfolio project. It is built with React, Node.js, Express and PostgreSQL, and every price is calculated on the server so what you see is what you book.",
+    "valuesEyebrow": "What we care about",
+    "valuesTitle": "Our values",
+    "values": {
+      "local": {
+        "title": "Local first",
+        "text": "Experiences rooted in Nepal's mountains, valleys and cities."
+      },
+      "honest": {
+        "title": "Honest information",
+        "text": "Clear prices, real availability and reviews from travellers who booked."
+      },
+      "respect": {
+        "title": "Respectful travel",
+        "text": "Encouraging travel that respects local communities, culture and nature."
+      },
+      "access": {
+        "title": "For everyone",
+        "text": "Nepali and English throughout, and designed to work well on any phone."
+      }
+    },
+    "howEyebrow": "How it works",
+    "howTitle": "Three steps to the trail",
+    "steps": {
+      "discover": {
+        "title": "Discover",
+        "text": "Browse treks, hotels and tours, and filter by destination, price, difficulty or duration."
+      },
+      "book": {
+        "title": "Book",
+        "text": "Pick your dates and group size, add your details, and confirm. No online payment is taken."
+      },
+      "travel": {
+        "title": "Travel",
+        "text": "Manage or cancel bookings from your dashboard, then share a review when you're back."
+      }
+    },
+    "cta": "Start exploring"
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Get in touch",
+    "intro": "Questions about a trek, a group booking or anything else? Send us a message.",
+    "subject": "Subject",
+    "message": "Message",
+    "messagePlaceholder": "Tell us about your plans or your question…",
+    "send": "Send message",
+    "emailLabel": "Email",
+    "officeLabel": "Based in",
+    "office": "Pokhara, Nepal",
+    "replyLabel": "Reply time",
+    "reply": "Usually within two working days",
+    "demoNote": "Demo project: messages are saved by the API, and the email address is a placeholder."
   }
 }
